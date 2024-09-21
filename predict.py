@@ -6,7 +6,7 @@ from paddleocr import PaddleOCR
 ocr = PaddleOCR(use_angle_cls=True, lang='vi')  # Initialize the OCR model
 
 # Define the root directory where images are stored
-input_folder = 'dataset/keyframes/'
+input_folder = '../dataset/keyframes/'
 output_folder = 'transcriptions'
 
 def ensure_dir(file_path):
