@@ -7,7 +7,7 @@ ocr = PaddleOCR(use_angle_cls=True, lang='vi')  # Initialize the OCR model
 
 # Define the root directory where images are stored
 input_folder = '../dataset/keyframes/'
-output_folder = 'transcriptions'
+output_folder = '../transcriptions'
 
 def ensure_dir(file_path):
     if not os.path.exists(file_path):
@@ -44,6 +44,11 @@ def process_image(image_path, output_csv_path):
 for root, dirs, files in os.walk(input_folder):
     for file in files:
         if file.endswith('.jpeg'):
+            # Skip files starting with "._" (hidden system files on macOS)
+            if file.startswith('._'):
+                print(f"Skipping hidden file: {file}")
+                continue
+
             # Full path to the input image
             image_path = os.path.join(root, file)
 
